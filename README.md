@@ -7,6 +7,8 @@ In Julia v1.11.1, calling `open(x::Cmd)` is extremely slower than v1.10.4, which
 ## Usage
 
 ```julia
+using BiBufferedStreams
+
 bam = "/path/to/a/bam/file"
 io = BiBufferedStream(open(`samtools view -h $bam`))
 
