@@ -201,6 +201,11 @@ function Base.readuntil(io::BiBufferedStream, delim::UInt8; keep::Bool = false)
         ## not found until readthrough buf[pos:available]
         # first part of string:
         line_first[] = String(buf[pos:available])
+        if io.fill2  # current 1, backup 2
+            io.pos1 = io.available1 + 1
+        else
+            io.pos2 = io.available2 + 1
+        end
 
         # check buf_other
         wait(io.task_fill_source[])
@@ -231,7 +236,7 @@ function Base.readuntil(io::BiBufferedStream, delim::UInt8; keep::Bool = false)
             @goto loop_to_find_char
         else
             # eof(io)
-            line =  line_first[] * String(buf[pos:available])
+            line = line_first[] * String(buf[pos:available])
 
             if io.fill2  # current 1, backup 2
                 io.pos1 = io.available1 + 1
