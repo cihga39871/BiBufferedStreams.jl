@@ -2,7 +2,7 @@
 
 A fast double-buffered stream to wrap Cmd Pipe (eg: `open(x::Cmd)`). It fills a buffer using Cmd asyncly, and another buffer is ready to take from the main process.
 
-In Julia v1.11.1, calling `open(x::Cmd)` is extremly slower than v1.10.4, and this is why I develop this package.
+In Julia v1.11.1, calling `open(x::Cmd)` is extremely slower than v1.10.4, which is why I developed this package.
 
 ## Usage
 
