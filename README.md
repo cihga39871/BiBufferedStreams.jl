@@ -30,34 +30,30 @@ In Julia v1.10.4, `BiBufferedStream` is ***1.26X*** faster than `open`: 1.74s vs
 
 #### Detail `@time` outputs:
 
-**Julia v1.11.1:**
+Julia v1.11.1:
 
-`BiBufferedStream(open(cmd))`:
+- `BiBufferedStream(open(cmd))`
+  - 1.476861 seconds (3.06 M allocations: 815.326 MiB, 7.63% gc time)
+  - 1.397820 seconds (3.06 M allocations: 815.330 MiB, 7.38% gc time)
+  - 1.379766 seconds (3.06 M allocations: 815.340 MiB, 7.47% gc time)
 
-- 1.476861 seconds (3.06 M allocations: 815.326 MiB, 7.63% gc time)
-- 1.397820 seconds (3.06 M allocations: 815.330 MiB, 7.38% gc time)
-- 1.379766 seconds (3.06 M allocations: 815.340 MiB, 7.47% gc time)
-
-`open(cmd)`:
-
-- 9.370884 seconds (9.84 M allocations: 1.516 GiB, 0.64% gc time)
-- 9.574880 seconds (9.84 M allocations: 1.516 GiB, 0.74% gc time)
-- 9.752019 seconds (9.84 M allocations: 1.516 GiB, 0.86% gc time)
+- `open(cmd)`
+  - 9.370884 seconds (9.84 M allocations: 1.516 GiB, 0.64% gc time)
+  - 9.574880 seconds (9.84 M allocations: 1.516 GiB, 0.74% gc time)
+  - 9.752019 seconds (9.84 M allocations: 1.516 GiB, 0.86% gc time)
 
 
-**Julia v1.10.4:**
+Julia v1.10.4:
 
-`BiBufferedStream(open(cmd))`:
+- `BiBufferedStream(open(cmd))`
+  - 1.741036 seconds (3.06 M allocations: 847.324 MiB, 9.60% gc time)
+  - 1.782255 seconds (3.06 M allocations: 847.315 MiB, 9.59% gc time)
+  - 1.681973 seconds (3.06 M allocations: 847.310 MiB, 10.87% gc time)
 
-- 1.741036 seconds (3.06 M allocations: 847.324 MiB, 9.60% gc time)
-- 1.782255 seconds (3.06 M allocations: 847.315 MiB, 9.59% gc time)
-- 1.681973 seconds (3.06 M allocations: 847.310 MiB, 10.87% gc time)
-
-`open(cmd)`:
-
-- 2.187896 seconds (5.00 M allocations: 1.400 GiB, 15.49% gc time)
-- 2.186295 seconds (5.00 M allocations: 1.400 GiB, 15.39% gc time)
-- 2.194213 seconds (5.00 M allocations: 1.400 GiB, 15.76% gc time)
+- `open(cmd)`
+  - 2.187896 seconds (5.00 M allocations: 1.400 GiB, 15.49% gc time)
+  - 2.186295 seconds (5.00 M allocations: 1.400 GiB, 15.39% gc time)
+  - 2.194213 seconds (5.00 M allocations: 1.400 GiB, 15.76% gc time)
 
 ### Script
 
