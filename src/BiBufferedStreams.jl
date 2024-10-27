@@ -108,12 +108,11 @@ function enlarge_buffer!(io::BiBufferedStream)
     if io.fill2  # current=1, fill=2
         # copy fill to current
         n_copy = io.available2
-        p_src = pointer(io.buf2)
-        p_dest = pointer(io.buf1, io.available1 + 1)
-
         if length(io.buf1) < io.available1 + n_copy
             resize!(io.buf1, io.available1 + n_copy)
         end
+        p_src = pointer(io.buf2)
+        p_dest = pointer(io.buf1, io.available1 + 1)
         unsafe_copyto!(p_dest, p_src, n_copy)
 
         io.available1 += n_copy
@@ -121,12 +120,11 @@ function enlarge_buffer!(io::BiBufferedStream)
         io.pos2 = 1
     else
         n_copy = io.available1
-        p_src = pointer(io.buf1)
-        p_dest = pointer(io.buf2, io.available2 + 1)
-
         if length(io.buf2) < io.available2 + n_copy
             resize!(io.buf2, io.available2 + n_copy)
         end
+        p_src = pointer(io.buf1)
+        p_dest = pointer(io.buf2, io.available2 + 1)
         unsafe_copyto!(p_dest, p_src, n_copy)
 
         io.available2 += n_copy
