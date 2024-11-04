@@ -1,5 +1,6 @@
 module BiBufferedStreams
 
+using PrecompileTools: @setup_workload, @compile_workload
 
 export BiBufferedStream
 
@@ -45,7 +46,7 @@ This function runs asynchronously.
 function async_fill_buffer_from_source!(io::BiBufferedStream)
     eof(io.source) && (return false)
     lock(io.lock) do
-        if istaskdone(io.task_fill_source[])
+        @inbounds if istaskdone(io.task_fill_source[])
             if io.fill2 && io.available2 == 0
                 io.task_fill_source[] = @async lock(io.lock) do 
                     io.available2 = readbytes!(io.source, io.buf2)
@@ -195,7 +196,7 @@ function Base.readuntil(io::BiBufferedStream, delim::UInt8; keep::Bool = false)
         stop += 1
     end
 
-    if !isdefined(line_first, 1)
+    @inbounds if !isdefined(line_first, 1)
         ## not found until readthrough buf[pos:available]
         # first part of string:
         line_first[] = String(buf[pos:available])
@@ -245,5 +246,7 @@ function Base.readuntil(io::BiBufferedStream, delim::UInt8; keep::Bool = false)
         end
     end
 end
+
+include("precompile.jl")
 
 end # module BiBufferedStreams

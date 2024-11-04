@@ -1,10 +1,12 @@
 name = "BiBufferedStreams"
 uuid = "0a7c0d76-3150-4455-b428-d5f420c13001"
 authors = ["Jiacheng Chuan <jiacheng_chuan@outlook.com>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
+PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
+PrecompileTools = "1.2"
 julia = "^1.8"
